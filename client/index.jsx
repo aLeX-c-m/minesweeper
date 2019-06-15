@@ -43,9 +43,9 @@ class App extends React.Component{
                 return {
                     isFlagged: false,
                     isMine: bool,
-                    revealed: false,
+                    isRevealed: false,
                     surroundingMineCount: bool ? 0 : adjacentCount
-                }
+                };
             })
         })
         .then((newGrid)=>{
@@ -56,7 +56,7 @@ class App extends React.Component{
         })
         .catch((err)=>{
             console.log(err)
-        })
+        });
     }
 
     recursivelyRevealMines(overallIdx){
@@ -64,15 +64,15 @@ class App extends React.Component{
         var { rowLength } = this.state
         var recursivelyReveal = new Promise((resolve)=>{
             var recurse =  function (idx){
-                if(idx >= 0 && idx <= newMineMap.length - 1 && newMineMap[idx].revealed === false && newMineMap[idx].isMine === false && newMineMap[idx].isFlagged === false){
-                    newMineMap[idx].revealed = true;
+                if(idx >= 0 && idx <= newMineMap.length - 1 && newMineMap[idx].isRevealed === false && newMineMap[idx].isMine === false && newMineMap[idx].isFlagged === false){
+                    newMineMap[idx].isRevealed = true;
                     if(newMineMap[idx].surroundingMineCount === 0){
                         var indices = [idx - rowLength, idx - 1, idx + 1, idx - rowLength - 1, idx - rowLength + 1, idx + rowLength, idx + rowLength + 1, idx + rowLength - 1]
                         if (idx  % rowLength === 0 || (idx + 1) % rowLength === 0 ){
                             indices = (idx + 1) % rowLength === 0 ? [idx - rowLength, idx - 1, idx - rowLength - 1, idx + rowLength, idx + rowLength - 1] : [idx - rowLength, idx + 1, idx - rowLength + 1, idx + rowLength, idx + rowLength + 1]
                         }
                         indices.forEach((index)=>{
-                            if(index >= 0 && index <= newMineMap.length - 1 && newMineMap[index].revealed === false){
+                            if(index >= 0 && index <= newMineMap.length - 1 && newMineMap[index].isRevealed === false){
                                 recurse(index);
                             }
                         })
@@ -89,7 +89,7 @@ class App extends React.Component{
         })
         .catch((err)=>{
             console.log(err)
-        })  
+        });
     }
 
     flagMine(idx){
@@ -97,7 +97,7 @@ class App extends React.Component{
         mineDup[idx].isFlagged = !mineDup[idx].isFlagged
         this.setState({
             mineMap: mineDup
-        })
+        });
     }
 
 

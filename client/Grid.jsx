@@ -19,7 +19,7 @@ class Grid extends React.Component{
     determineClass(quad){
         var classString = ''
         if(quad.isFlagged || quad.isMine){
-            classString = quad.isFlagged ? 'flagged' : 'mine'
+            classString = quad.isFlagged ? 'flagged' : 'mine';
         }
         return classString;
     }
@@ -29,12 +29,12 @@ class Grid extends React.Component{
                 return quad.surroundingMineCount !== 0 ? quad.surroundingMineCount : null;     
         } else if(quad.isFlagged){
             if(this.state.minesTripped && !quad.isMine){
-                return  <img src='redflag2.png'></img>
+                return  <img src='red_flag.png'></img>;
             } else {
-                return  <img src='Flag.png'></img>
+                return  <img src='white_lag.png'></img>;
             }
         } else if (this.state.minesTripped && quad.isMine ){
-                return <img src='redmine.png'></img> 
+                return <img src='redmine.png'></img>;
         } else {
             return null;
         }
@@ -57,11 +57,10 @@ class Grid extends React.Component{
         return (
             <div>
                 <div id= 'logo'>
-                <img src={this.state.minesTripped ? 'white-skull-md.png' : ''}></img>
-                <img src={this.state.minesTripped ? 'white-skull-md.png' : ''}></img>
+                <img src={this.state.minesTripped ? 'skull.png' : ''}></img>
+                <img src={this.state.gameWon ? 'smiley.png' : ''}></img>
                     {this.renderTitleMessage()}
                 </div>
-        
                 <span id='spanGrid'>
                 {this.props.initialGrid.map((q, idx)=>{
                     var quad = this.props.initialGrid[idx]
