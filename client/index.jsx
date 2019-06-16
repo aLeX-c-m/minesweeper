@@ -6,7 +6,6 @@ class App extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            minesTripped: false,
             initialGrid: Array(100).fill(true, 0, 10).fill(false, 10, 100),
             rowLength: 10
         }
@@ -20,7 +19,7 @@ class App extends React.Component{
     }
 
     setMines(){   
-        var shuffle = new Promise((resolve, reject) =>{
+        var shuffle = new Promise((resolve) =>{
             var a = this.state.initialGrid.slice()
             var j, x, i;
             for (i = a.length - 1; i > 0; i--) {
@@ -32,19 +31,17 @@ class App extends React.Component{
             resolve(a);
         })
         shuffle.then((grid)=>{
-            return grid.map((bool, idx)=>{
-
+            return grid.map((isMine, idx)=>{
                 var { rowLength } = this.state
                 var adjacentCount = !!grid[idx - 1]  + !!grid[idx + 1] + !!grid[idx - rowLength - 1] + !!grid[idx - rowLength] + !!grid[idx - rowLength + 1] + !!grid[idx + rowLength - 1] + !!grid[idx + rowLength] + !!grid[idx + rowLength + 1]
                 if(idx % rowLength === 0 || (idx + 1) % rowLength === 0 ){
                     var adjacentCount = idx % rowLength === 0 ? !!grid[idx + 1] + !!grid[idx - rowLength] + !!grid[idx - rowLength + 1] + !!grid[idx + rowLength] + !!grid[idx + rowLength + 1] : !!grid[idx - 1]  + !!grid[idx - rowLength - 1] + !!grid[idx - rowLength] + !!grid[idx + rowLength - 1] + !!grid[idx + rowLength]
                 }
-
                 return {
                     isFlagged: false,
-                    isMine: bool,
+                    isMine: isMine,
                     isRevealed: false,
-                    surroundingMineCount: bool ? 0 : adjacentCount
+                    surroundingMineCount: isMine ? 0 : adjacentCount
                 };
             })
         })
@@ -76,7 +73,6 @@ class App extends React.Component{
                                 recurse(index);
                             }
                         })
-
                     }   
                 } 
             }
@@ -84,7 +80,7 @@ class App extends React.Component{
         })
         recursivelyReveal.then(()=>{
             this.setState({
-                mineMap: newMineMap
+                initialGrid: newMineMap
             });
         })
         .catch((err)=>{
@@ -93,21 +89,20 @@ class App extends React.Component{
     }
 
     flagMine(idx){
-        var mineDup = this.state.initialGrid.slice()
-        mineDup[idx].isFlagged = !mineDup[idx].isFlagged
+        var newMineMap = this.state.initialGrid.slice()
+        newMineMap[idx].isFlagged = !newMineMap[idx].isFlagged
         this.setState({
-            mineMap: mineDup
+            initialGrid: newMineMap
         });
     }
-
 
     render(){
         return (
             <div>
                 <div id='box'>
-                    <h1><span class='logo' >MINESWEEPER</span></h1>
+                    <h1><span class='title'>MINESWEEPER</span></h1>
                 </div>
-                 < Grid flagMine={this.flagMine} initialGrid={this.state.initialGrid} showMines={this.showMines} recursivelyRevealMines={this.recursivelyRevealMines} minesTripped={this.state.minesTrippes}/>
+                 < Grid flagMine={this.flagMine} initialGrid={this.state.initialGrid} recursivelyRevealMines={this.recursivelyRevealMines} />
             </div>)
     }
 }
