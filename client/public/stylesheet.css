@@ -1,51 +1,145 @@
-
-
-#box{
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    text-emphasis: padd;
-    align-content: center;
-    text-align: center;
-    padding: 10px;
-    display: grid;
-    flex-wrap: wrap;
-    margin: auto;
-    max-height: 100px;
+@font-face {
+    font-family: font1;
+    src: url(fonts/AvenirLTStd-Book.otf);
 }
 
-h1{
-    border: 3.5px white solid; 
-    color: white;
-    font-family: sans-serif;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-emphasis: padd;
-    align-content: center;
-    text-align: center;
-    padding: 10px;
+img {
     display: flex;
+    max-width: 206px;
+    min-width: 98px;
+    padding: 0px 0px 18px 0px;
+    margin: auto;
 }
 
-#title{
-    font-size:30px;
-    color: white;
-    font-family: sans-serif;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-emphasis: padd;
-    text-align: center; 
-    padding: 10px; 
+a {
+    position: inherit;
+    margin: auto;
+    min-width: 168px;
+    max-width: 171px;
+    animation: fade 3s forwards;
+    font-size: 13px;
+    color: rgb(244, 245, 247);
+    font-family: font1;
+    text-align: center;
+    padding: 16px 18px 16px 18px;
+    display: block;
+    text-decoration: none;
 }
 
-#refresh{
-    font-size:18px;
-    color: white;
-    font-family: sans-serif;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-emphasis: padd;
-    text-align: center; 
-    padding: 5px; 
+p {
+    position: inherit;
+    margin: auto;
+    min-width: 168px;
+    max-width: 171px;
+    animation: fade 3s forwards;
+    font-size: 13px;
+    color: rgb(244, 245, 247);
+    font-family: font1;
+    text-align: center;
+    padding: 16px 18px 16px 18px;
+    display: block;
+    text-decoration: none;
 }
 
+li {
+    list-style-type: none;
+}
+
+a iframe{
+    margin: auto;
+    margin-top: 0px;
+    margin-left: -168.5px;
+    width: 500px;
+    height: 700px;
+}
+
+button {
+    background-color: transparent;
+    opacity: 0%;
+    border: none;
+    text-align: center;
+    padding: 16px 16px 16px 14px;
+}
+
+span{
+    align-content: center;
+    display: grid;
+    grid-template-rows: 40px 150px 1100px;
+}
+
+.menu {
+    margin: calc(auto - 33%);
+    margin-top: 36px;
+    align-content: center;
+}
+
+#title {
+    position: inherit;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border: 2px rgb(247, 245, 243) solid; 
+    color: rgb(250, 248, 246);
+    font-family: font1;
+    min-width: 168px;
+    max-width: 171px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 100%;
+    font-weight: normal;
+    padding: 16px;
+    cursor: pointer;
+}
+
+#categoryTitle {
+    position: inherit;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: rgb(250, 248, 246);
+    font-family: font1;
+    min-width: 168px;
+    max-width: 171px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 100%;
+    font-weight: normal;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.fade {
+    opacity: 0;
+    animation: fade 5s forwards;
+}
+
+@keyframes fade {
+    0% {
+      opacity: 0;
+      transform: translateY(7px);
+    }
+    10% {
+        opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+
+      
+
+      
+     
+      /* .dropdown-content a:hover { color:black;}
+      
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      } */
+
+/* 
 #spanGrid{
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -55,73 +149,34 @@ h1{
     max-width: 800px;
     max-height: 800px;
     width: 80%;  
-}
-
+} */
+/* 
 #quad{
-    background-color: #4dc567;
+    background: transparent;
     border: 3.5px white solid; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     overflow: hidden;
     text-align:center;
-}
+} */
 
-#revealedQuad{
-    background-color: white;
-    border: 3.5px #4dc567 solid; 
-    color:#368a48;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-    font-size: 40px;
-}
-
-#quad.flagged{
-    background-color: #4dc567;
-    border: 3.5px white solid; 
-}
-#quad.flagged > img {
-    margin-top: 5px;
-    max-height: 75%;
-    max-width: 75%;
-}
-
-#revealedQuad.flagged{
-    background-color: white;
-    border: 3.5px #4dc567 solid; 
-}
-
-#revealedQuad.flagged > img {
-    margin-top: 5px;
-    max-height: 75%;
-    max-width: 75%;
-}
-
-#revealedQuad.mine{
-    background-color:white;
-    border: 3.5px #4dc567 solid; 
-}
-
-#revealedQuad.mine > img{
-    max-height: 100%;
-    max-width: 100%;
-}
-.page { 
-    align-content: center;
-    height: 130%;
+.page {
+    /* cursor: ;  */
+    height: 150%;
     width: 100%;
     left:0;
     right: 0;
     top: 0;
     bottom: 0;
     position: absolute;
-    background:linear-gradient(179deg, #2aad35, #5fd893,#358d47, #90d685);
-    background-size: 1800% 1800%;
- 
-    -webkit-animation: rainbow 20s ease infinite;
-    -z-animation: rainbow 20s ease infinite;
-     -o-animation: rainbow 20s ease infinite;
-    animation: rainbow 20s ease infinite;}
+    background:linear-gradient(179deg, #fae68b, #769165,#db8b40, rgb(243, 40, 209) );
+    background-size: 1500% 1500%;
+    -webkit-animation: rainbow 70s ease infinite;
+    -z-animation: rainbow 70s ease infinite;
+    -o-animation: rainbow 70s ease infinite;
+    animation: rainbow 70s ease infinite;
+}
   
-     @-webkit-keyframes rainbow {
+@-webkit-keyframes rainbow {
       0%{background-position:0% 82%}
       50%{background-position:100% 19%}
       100%{background-position:0% 82%}

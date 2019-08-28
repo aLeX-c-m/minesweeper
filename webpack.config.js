@@ -14,6 +14,11 @@ module.exports = {
         }
       ]
     },
+    devServer:{
+      historyApiFallback: {
+        index:'build/index.html'
+      }
+    },
      output: {
       filename: 'bundle.js',
       path: __dirname + '/client/public'
